@@ -1,9 +1,9 @@
+import Navbar from "@/components/layout/Navbar";
+import SideBar from "@/components/layout/SideBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import SideBar from "@/components/layout/SideBar";
-import ApolloProviderComponent from "@/utils/providers/ApolloPorvider";
+import TanQueryProvider from "@/utils/providers/tanstackQuery";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ApolloProviderComponent>
+      <TanQueryProvider>
         <body className={inter.className}>
           <Navbar />
           <div className="flex flex-row  container mx-auto  h-full flex-1  gap-4  ">
@@ -27,7 +27,7 @@ export default function RootLayout({
             {children}
           </div>
         </body>
-      </ApolloProviderComponent>
+      </TanQueryProvider>
     </html>
   );
 }
