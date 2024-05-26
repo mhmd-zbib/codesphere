@@ -4,6 +4,7 @@ type User = {
 };
 
 type Post = {
+  // map(arg0: (post: any) => React.JSX.Element): React.ReactNode;
   id: number;
   user: User;
   title: string;

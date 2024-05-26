@@ -5,7 +5,7 @@ import React from "react";
 type AvatarProps = {
   imageUrl: string;
   altText: string;
-  size?: "sm" | "md" | "lg"; // Updated size prop
+  size?: "sm" | "md" | "lg";
 };
 
 const sizeToPixels: Record<"sm" | "md" | "lg", number> = {

@@ -6,17 +6,19 @@ import Link from "next/link";
 import { getPostsQuery } from "../../queries/get-posts";
 
 const PostList = () => {
-  const { data: posts, isLoading, isError } = getPostsQuery();
+  const { data, isLoading, isError } = getPostsQuery();
 
-  console.log(posts?.data);
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="border border-accent rounded-xl  overflow-hidden  w-full">
-      {/* {posts.map((post: Post) => (
-        <Link href="/">
-          <PostItem post={post} key={post.id} />
+    <div className="border border-accent rounded-xl overflow-hidden w-full">
+      {data.map((post: Post) => (
+        <Link href="/" key={post.id}>
+          <PostItem post={post} />
         </Link>
-      ))} */}
+      ))}
     </div>
   );
 };

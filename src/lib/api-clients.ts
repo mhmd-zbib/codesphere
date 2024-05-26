@@ -15,7 +15,7 @@ export const api = Axios.create({
 
 api.interceptors.request.use(authRequestInterceptor);
 api.interceptors.response.use(
-  (response: any) => {
+  (response) => {
     return response.data;
   },
   (error) => {

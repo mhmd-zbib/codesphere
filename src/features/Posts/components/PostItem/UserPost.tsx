@@ -14,7 +14,6 @@ export default function UserPost({ user, collaboration }: UserPostProps) {
     <div className="flex items-center mt-4 gap-4">
       <Avatar imageUrl={user.avatar} altText="profilePic" />
       <p className="text-lg ">{user.username}</p>
-
       <p>{collaboration} s</p>
     </div>
   );

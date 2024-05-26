@@ -6,6 +6,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        main: " rgb(79 70 229  );",
         primary: "white", // Medium Gray
         secondary: "#555", // Dark Gray
         accent: "#333", // Darker Gray

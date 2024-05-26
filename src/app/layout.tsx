@@ -20,13 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <TanQueryProvider>
-        <body className={inter.className}>
-          <Navbar />
-          <div className="flex flex-row  container mx-auto  h-full flex-1  gap-4  ">
-            <SideBar />
-            {children}
-          </div>
-        </body>
+        <body className={inter.className}>{children}</body>
       </TanQueryProvider>
     </html>
   );
