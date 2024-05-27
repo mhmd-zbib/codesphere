@@ -12,8 +12,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-secondary">
-      <div className="container mx-auto px-4 py-4">
+    <nav className="sticky top-0 z-50 border-secondary      ">
+      <div className="px-4 py-4">
         <div className="flex justify-between items-center">
           <NavbarBrand />
           <NavbarToggle isOpen={isOpen} toggleMenu={toggleMenu} />

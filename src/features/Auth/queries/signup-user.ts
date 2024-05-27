@@ -1,16 +1,14 @@
-"use client";
-
 import { api } from "@/lib/api-clients";
 import { useQuery } from "@tanstack/react-query";
 
-async function fetchPosts(): Promise<Post[]> {
+async function signupUser(): Promise<Post[]> {
   return api.get("/posts");
 }
 
-export const getPostsQuery = () => {
+export const signupUserMutation = () => {
   return useQuery<Post[], Error>({
     queryKey: ["get-posts"],
-    queryFn: fetchPosts,
+    queryFn: signupUser,
     retry: false,
   });
 };

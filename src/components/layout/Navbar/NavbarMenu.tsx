@@ -14,8 +14,8 @@ const NavbarMenu: React.FC<NavbarMenuProps> = ({ isOpen }) => {
         isOpen ? "block" : "hidden"
       }`}>
       <div className="text-sm lg:flex-grow">
-        <NavbarLink href="/">Home</NavbarLink>
-        <NavbarLink href="/about">Explore</NavbarLink>
+        <NavbarLink href="/feed">Home</NavbarLink>
+        <NavbarLink href="/explore">Explore</NavbarLink>
       </div>
     </div>
   );
