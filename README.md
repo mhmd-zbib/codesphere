@@ -9,7 +9,7 @@ Have you ever had a brilliant project idea but lacked the right team to bring it
 1. Clone the repository from GitHub:
 
    ```
-   git clone https://github.com/mhmd-zbib/codesphere.git
+   git clone https://github.com/mhmd-zbib/code-sphere.git
    ```
 
 2. Navigate to the project directory:
@@ -27,7 +27,7 @@ Have you ever had a brilliant project idea but lacked the right team to bring it
 4. Start the development server:
 
    ```
-   npm run dev
+   npm start
    ```
 
 5. Open ExpoGo or your Iphone camera and scan the QR code.
@@ -36,9 +36,8 @@ Have you ever had a brilliant project idea but lacked the right team to bring it
 
 ## Tech Stack
 
-- NextJs
+- React
 - Express TS
-- GraphQL
 - Docker
 
 ## Key Features
