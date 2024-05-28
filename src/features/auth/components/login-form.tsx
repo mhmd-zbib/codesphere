@@ -17,42 +17,27 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import authConfig from "@/lib/auth-connfig";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import * as z from "zod";
-// import { signup } from "@/server/actions/auth";
 
-const formSchema = z
-  .object({
-    username: z.string().min(6).max(16),
-    email: z.string().email(),
-    password: z.string().min(6),
-    passwordConfirm: z.string(),
-  })
-  .refine(
-    (data) => {
-      return data.password === data.passwordConfirm;
-    },
-    {
-      message: "Passwords do not match",
-      path: ["passwordConfirm"],
-    }
-  );
+export const loginSchema = z.object({
+  email: z.string().email().nonempty({ message: "Required Field" }),
+  password: z.string().nonempty({ message: "Required Field" }),
+});
 
 export default function LoginForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("hi");
-  };
+  const handleSubmit = (values: z.infer<typeof loginSchema>) => {};
 
   return (
     <>
