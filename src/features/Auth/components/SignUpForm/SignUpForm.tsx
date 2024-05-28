@@ -53,6 +53,8 @@ const formSchema = z
     }
   );
 
+console.log("test");
+
 function SignUpForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

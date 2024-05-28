@@ -1,5 +1,4 @@
 import Axios, { InternalAxiosRequestConfig } from "axios";
-import { env } from "process";
 
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   if (config.headers) {
