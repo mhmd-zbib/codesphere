@@ -17,14 +17,38 @@ import { useMutation } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import * as z from "zod";
 import { useSignupForm } from "../hooks/validations";
+import { useNavigate } from "react-router-dom";
 
 function SignupForm() {
+  const navigate = useNavigate();
   const form = useSignupForm();
+
   const mutation = useMutation({
     mutationFn: authConfig.signupFn,
+    onSuccess: () => {
+      navigate("/feed");
+      return;
+    },
+
+    onError: (err: any) => {
+      console.log(err);
+
+      if (err.details.email) {
+        form.setError("email", {
+          type: "email",
+          message: err.details.email,
+        });
+      }
+
+      if (err.details.username) {
+        form.setError("username", {
+          type: "username",
+          message: err.details.username,
+        });
+      }
+    },
   });
 
-  //
   //! look to change later shouldn't be any
   //
   const handleSubmit = (values: z.infer<any>) => {

@@ -14,8 +14,7 @@ const authConfig: AuthConfig = {
     return res;
   },
   signupFn: async (data: any) => {
-    const res = await signup(data);
-    return res;
+    return await signup(data);
   },
   logoutFn: async () => {
     const res = await logout();

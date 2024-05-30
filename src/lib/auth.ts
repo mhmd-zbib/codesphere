@@ -4,19 +4,19 @@ import { z } from "zod";
 import { signupSchema } from "@/features/auth/hooks/validations";
 
 const getUser = () => {
-  api.get("/auth/me");
+  return api.get("/auth/me");
 };
 
 const login = (data: z.infer<typeof loginSchema>) => {
-  api.post("/auth/login", data);
+  return api.post("/auth/login", data);
 };
 
 const signup = (data: z.infer<typeof signupSchema>) => {
-  api.post("/auth/signup", data);
+  return api.post("/auth/signup", data);
 };
 
 const logout = () => {
-  api.post("/auth/logout");
+  return api.post("/auth/logout");
 };
 
 export { getUser, login, signup, logout };
