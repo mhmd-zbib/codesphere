@@ -1,7 +1,7 @@
 import { loginSchema } from "@/features/auth/components/login-form";
 import { api } from "./api-client";
 import { z } from "zod";
-import { signupSchema } from "@/features/auth/components/signup-form";
+import { signupSchema } from "@/features/auth/hooks/validations";
 
 const getUser = () => {
   api.get("/auth/me");

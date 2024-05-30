@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import authConfig from "@/lib/auth-connfig";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import * as z from "zod";
@@ -37,7 +38,13 @@ export default function LoginForm() {
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof loginSchema>) => {};
+  const mutation = useMutation({
+    mutationFn: authConfig.loginFn,
+  });
+
+  const handleSubmit = (values: z.infer<typeof loginSchema>) => {
+    mutation.mutate(values);
+  };
 
   return (
     <>

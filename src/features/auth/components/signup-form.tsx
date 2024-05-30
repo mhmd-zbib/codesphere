@@ -1,5 +1,6 @@
 "use client";
 
+import FormFieldWrapper from "@/components/ui/FormField";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,50 +10,30 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import authConfig from "@/lib/auth-connfig";
+import { useMutation } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import * as z from "zod";
-
-export const signupSchema = z
-  .object({
-    username: z.string().min(6).max(16),
-    email: z.string().email(),
-    password: z.string().min(6),
-    passwordConfirm: z.string(),
-  })
-  .refine(
-    (data) => {
-      return data.password === data.passwordConfirm;
-    },
-    {
-      message: "Passwords do not match",
-      path: ["passwordConfirm"],
-    }
-  );
+import { useSignupForm } from "../hooks/validations";
 
 function SignupForm() {
-  const form = useForm<z.infer<typeof signupSchema>>({
-    resolver: zodResolver(signupSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-    },
+  const form = useSignupForm();
+  const mutation = useMutation({
+    mutationFn: authConfig.signupFn,
   });
 
-  const handleSubmit = (values: z.infer<typeof signupSchema>) => {
-    console.log("hi");
+  //
+  //! look to change later shouldn't be any
+  //
+  const handleSubmit = (values: z.infer<any>) => {
+    const data = {
+      username: values.username,
+      email: values.email,
+      password: values.password,
+    };
+    mutation.mutate(data);
   };
 
   return (
@@ -65,66 +46,29 @@ function SignupForm() {
               <CardDescription>Glad to see you back, lets go!</CardDescription>
             </CardHeader>
             <CardContent>
-              <FormField
+              <FormFieldWrapper
                 control={form.control}
                 name="username"
-                render={({ field }) => {
-                  return (
-                    <FormItem>
-                      <FormLabel>Username</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="John Doe" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
+                label="Username"
+                placeholder="John Doe"
               />
-              <FormField
+              <FormFieldWrapper
                 control={form.control}
                 name="email"
-                render={({ field }) => {
-                  return (
-                    <FormItem>
-                      <FormLabel>Email Address</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="Email Address" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
+                label="Email Address"
+                placeholder="Email Address"
               />
-              <FormField
+              <FormFieldWrapper
                 control={form.control}
                 name="password"
-                render={({ field }) => {
-                  return (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="Password" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
+                label="Password"
+                placeholder="Password"
               />
-
-              <FormField
+              <FormFieldWrapper
                 control={form.control}
                 name="passwordConfirm"
-                render={({ field }) => {
-                  return (
-                    <FormItem>
-                      <FormLabel>Confirm Password</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="Confirm Password" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
+                label="Confirm Password"
+                placeholder="Confirm Password"
               />
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
