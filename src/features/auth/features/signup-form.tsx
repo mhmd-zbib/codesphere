@@ -1,6 +1,6 @@
 "use client";
 
-import FormFieldWrapper from "@/components/ui/FormField";
+import FormFieldWrapper from "@/features/auth/components/FormField";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
-import authConfig from "@/lib/auth-connfig";
+import authConfig from "@/lib/auth-config";
 import { useMutation } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import * as z from "zod";

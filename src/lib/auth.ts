@@ -1,4 +1,4 @@
-import { loginSchema } from "@/features/auth/components/login-form";
+import { loginSchema } from "@/features/auth/features/login-form";
 import { api } from "./api-client";
 import { z } from "zod";
 import { signupSchema } from "@/features/auth/hooks/validations";

@@ -17,11 +17,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import authConfig from "@/lib/auth-connfig";
+import { useAuth } from "@/context/auth-context";
+import authConfig from "@/lib/auth-config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as z from "zod";
 
 export const loginSchema = z.object({
@@ -30,6 +32,8 @@ export const loginSchema = z.object({
 });
 
 export default function LoginForm() {
+  const auth = useAuth();
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -43,7 +47,9 @@ export default function LoginForm() {
   });
 
   const handleSubmit = (values: z.infer<typeof loginSchema>) => {
-    mutation.mutate(values);
+    // mutation.mutate(values);
+    auth.login(values);
+    navigate("/");
   };
 
   return (
